@@ -1,5 +1,7 @@
 import express from 'express';
+import cors from "cors"
 import dotenv from "dotenv"
+
 import {connectDB} from "./config/db.js"
 import notesRoutes from "./routes/noteRoutes.js"
 import rateLimiter from './middleware/rateLimiter.js';
@@ -9,6 +11,9 @@ dotenv.config();
 const app = express();
 
 //middleware allow us to get access to req.body and will parse JSON bodies
+app.use(cors({
+    origin: "http://localhost:5173"
+}));
 app.use(express.json());
 app.use(rateLimiter);
 
