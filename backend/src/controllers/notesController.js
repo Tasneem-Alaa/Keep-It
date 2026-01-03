@@ -44,7 +44,7 @@ const updateNote = async (req, res) => {
         const updatedNote = await Note.findByIdAndUpdate(id,{title,content},{new:true})
         if(!updatedNote)
             return res.status(404).json({message:"Note not found"});
-        res.status(200).json({message:"Note updates successfully!",updateNote})
+        res.status(200).json({message:"Note updates successfully!",updatedNote})
 
     }catch(e){
         console.error("Error in updateNote controller",e)
@@ -57,7 +57,7 @@ const deleteNote = async (req, res) => {
         const id = req.params.id;
         const deletedNote = await Note.findByIdAndDelete(id);
         if(!deletedNote)
-            return res.status(404).json({message:"Note not found"},{new:true});
+            return res.status(404).json({message:"Note not found"});
         res.status (200). json({message:"Note deleted successfully!"});
     }catch(e){
         console.error("Error in deleteNote controller",e)
